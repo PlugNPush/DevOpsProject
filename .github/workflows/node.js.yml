@@ -50,3 +50,8 @@ jobs:
     - name: Build Project
       working-directory: ./DevOpsFrontend/my-app
       run: npm run build --if-present
+    - name: Cache build directory
+      uses: actions/cache@v3
+      with:
+        path: ./DevOpsFrontend/my-app/build
+        key: ${{ runner.os }}-frontend-${{ hashFiles('**/package-lock.json') }}
