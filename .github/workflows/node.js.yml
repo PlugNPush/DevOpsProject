@@ -12,17 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Backend folder
-      uses: actions/checkout@v3
-      with:
-        path: server
-    - name: LS for debug
-      run: ls server
     - name: Use Node.js 20.3.1
       uses: actions/setup-node@v2
       with:
          node-version: 16.14.0
          cache: "npm"
+         cache-dependency-path: package-lock.json
     - name: Install Dependencies
       working-directory: ./server
       run: npm i
@@ -35,10 +30,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Frontend folder
-      uses: actions/checkout@v3
-      with:
-        path: my-app
     - name: Use Node.js 20.3.1
       uses: actions/setup-node@v3
       with:
