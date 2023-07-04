@@ -50,12 +50,3 @@ jobs:
     - name: Build Project
       working-directory: ./DevOpsFrontend/my-app
       run: npm run build --if-present
-    - name: lsing
-      run: ls
-    - name: lsing
-      run: ls DevOpsFrontend/my-app/
-    - name: Cache build directory
-      uses: actions/cache@v3
-      with:
-        path: ./DevOpsFrontend/my-app/build
-        key: ${{ runner.os }}-frontend-${{ github.sha }}
