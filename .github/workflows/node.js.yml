@@ -48,14 +48,3 @@ jobs:
     - name: Build Project
       working-directory: ./DevOpsFrontend/my-app
       run: npm run build --if-present
-
-  send_discord_notification:
-    runs-on: ubuntu-latest
-    needs: [test_backend, build_frontend]
-    steps:
-    - name: Discord notification
-      env:
-        DISCORD_WEBHOOK: 'https://discord.com/api/webhooks/1125824673112916149/r3nfgEovUo4HHhjiRLvCaYFn7te-U8fpkREFz-XOFvzURPVBE_U-yWVcKQqBqZCfOLBn'
-      uses: Ilshidur/action-discord@master
-      with:
-        args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
