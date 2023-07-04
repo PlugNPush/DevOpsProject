@@ -1,8 +1,6 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   
   # push:
   #   branches: [ "main" ]
@@ -12,17 +10,15 @@ on:
     types:
       - completed
 
-  # Allows you to run this workflow manually from the Actions tab
+
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -52,7 +48,6 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        # Upload entire repository
         path: './DevOpsFrontend/my-app/build'
         name: build
   deploy:
@@ -74,8 +69,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
           path: './my-app/build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+  send_discord_notification:
+    runs-on: ubuntu-latest
+    needs: [deploy, build_frontend]
+    steps:
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: 'https://discord.com/api/webhooks/1125824673112916149/r3nfgEovUo4HHhjiRLvCaYFn7te-U8fpkREFz-XOFvzURPVBE_U-yWVcKQqBqZCfOLBn'
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
