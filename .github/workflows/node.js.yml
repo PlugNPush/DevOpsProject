@@ -58,4 +58,4 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ./DevOpsFrontend/my-app/build
-        key: ${{ runner.os }}-frontend-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-frontend-${{ github.sha }}
