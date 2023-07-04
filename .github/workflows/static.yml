@@ -8,7 +8,7 @@ on:
   #   branches: [ "main" ]
 
   workflow_run:
-    workflows: ["integration-workflow-name"]
+    workflows: ["Node.js CI"]
     types:
       - completed
 
@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: build
-          key: ${{ runner.os }}-frontend-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-frontend-${{ github.sha }}
       - name: LSing
         run: ls
       - name: Upload artifact
