@@ -1,0 +1,119 @@
+#main{
+    display: flex;
+    justify-content: center;
+}
+
+#Bins{
+    margin-left: 5px;
+    margin-bottom: 15%;
+}
+
+#BCOO{
+    margin-left: 5px;
+    margin-bottom: 1.5em;
+}
+
+#CheckPass{
+    font-size: 1.5em;
+    color: #d54848;
+}
+
+.Error{
+    margin-bottom: 10%;
+}
+
+.form{
+    margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+}
+#formSign{
+    margin-top: 5em;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+.infoP{
+    display: flex;
+    margin-bottom: 2em;
+}
+.champ{
+    font-size: 1.5em;
+    height: 1.8em;
+}
+
+#buttonHolder{
+    display: flex;
+    gap : 2em; 
+    margin-left: 15%;
+}
+
+.icons{
+    font-size: 3em; 
+    color: #a88beb;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.iconHolder{
+    background-color: white;
+    height: 3em;
+}
+
+
+.bn39 {
+    background-color: #f8ceec;
+    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    height: 50px;
+    font-size: 1.6em;
+    font-weight: 600;
+    padding: 4px;
+    position: relative;
+    text-decoration: none;
+    width: 7em;
+    z-index: 2;
+  }
+  
+  .bn39:hover {
+    color: #fff;
+  }
+  
+  .bn39 .bn39span {
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    transition: background 0.5s ease;
+    width: 100%;
+  }
+  
+  .bn39:hover .bn39span {
+    background: transparent;
+  }
+
+#cancelIcon{
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+    top: 10px;
+    color: #a88beb;
+    right: 10px;
+    transition-duration : 500ms;
+}
+
+#cancelIcon:hover{
+    transform : rotate(90deg);
+    transition-duration : 500ms;
+    color: #d54848;
+}

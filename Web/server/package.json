@@ -1,0 +1,22 @@
+{
+  "name": "touitere",
+  "version": "1.0.0",
+  "description": "Mon app touitère côté serveur",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "serve": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-session": "^1.17.1",
+    "mocha": "^8.3.0",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7"
+  }
+}

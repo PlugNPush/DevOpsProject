@@ -1,0 +1,478 @@
+html {
+  min-height: 100%;
+}    
+body {
+  height: fit-content;
+  overflow: visible;
+}
+.parentTwall {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-image: linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 100%), url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    
+#logoInfo{
+    width: 2.5em;
+    height: 2.5em;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 30px;
+}
+.div1Twall { 
+    grid-area: 1 / 1 / 9 / 2; 
+    bottom: 0;
+}
+.div2Twall { 
+    grid-area: 1 / 2 / 2 / 9; 
+}
+.div3Twall { 
+    grid-area: 2 / 2 / 9 / 9; 
+}
+.div4Twall { 
+  grid-area: 2 / 2 / 6 / 8;
+  border: solid; 
+  backdrop-filter: blur(15px);
+  visibility: hidden;
+  z-index: 0;
+}
+
+.div5Twall { 
+  grid-area: 2 / 2 / 6 / 8; 
+  border: solid; 
+  backdrop-filter: blur(15px);
+  visibility: hidden;
+  z-index: 0;
+}
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .div5Twall {
+    background-color:  rgba(6,35,67, 0.9)
+  }
+}
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .div4Twall {
+    background-color:  rgba(6,35,67, 0.9)
+  }
+}
+.infoIconBar{
+    background-color: black;
+    width: 100px;
+    height: 20px;
+    visibility: hidden;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.iconContener{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+#toColor{
+    background-color: #a88beb;
+    width: 6em;
+}
+
+
+.infoContener{
+    display: flex;
+    height: 100%;
+}
+
+.iconBarInfo{
+    width: 2.5em;
+    height: 2.5em;
+    margin-top: 4em;
+    margin-left: 2em;
+    margin-right: 30px;
+}
+
+.iconBarInfo:hover{
+    color: rgb(26, 202, 251);
+    border-radius: 25%;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+}
+
+#home{
+    margin-top: 8.5em;
+    border-left: 40px black;
+}
+
+#profil{
+    margin-top: 4em;
+}
+
+#message{
+    margin-top: 4em;
+}
+
+#logout{
+    margin-top: 4em;
+}
+
+
+#NavBar{
+    width: 100%;
+}
+
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #a88beb;
+  border-right: none;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px 0 0 5px;
+  font-size: 1.5em;
+  outline: none;
+  color: #a88beb;
+}
+
+.searchTerm:focus{
+  color: #a88beb;;
+}
+
+.searchButton {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #a88beb;
+  background: #a88beb;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchButton:hover{
+  box-shadow: 1px 1px 10px rgb(40, 191, 225);
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  margin-top: 2%;
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+}
+
+.ListMessage{
+  display: flex;
+  flex-direction: column;
+}
+
+.Message{
+  display: flex;
+  flex-direction: column;
+}
+
+.infoMes{
+  display: flex;
+}
+
+.messageBorder{
+  border: solid;
+}
+
+
+
+.post__avatar img {
+  border-radius: 50%;
+  height: 40px;
+}
+
+.postContener{
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin-top: 2em;
+}
+
+.GaucheWALL{
+  width: 60%;
+  max-width: 50em;
+}
+
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+  padding-bottom: 10px;
+  max-width: 50em;
+  height: fit-content;
+  border-radius: 15px;
+  z-index: 0;
+  border: solid;
+  margin-bottom: 2em;
+  background-color: white;
+  backdrop-filter: blur(15px);
+  opacity: 95%;
+}
+
+
+.post__body img {
+  width: 450px;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.post__headerText h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.post__body {
+  flex: 1;
+  padding: 10px;
+}
+
+.post__avatar {
+  padding: 20px;
+}
+
+#imgprof{
+}
+
+#imgprof:hover{
+  box-shadow: 0px 2px 5px 6px rgba(134,27,255,0.68);
+}
+
+.test:hover{
+  background-color: red;
+}
+
+.post__footer{
+  margin-top: 5%;
+  display: flex;
+  gap: 20px;
+}
+
+.iconPost{
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.iconPost:hover{
+  transform: scale(1.5);
+}
+
+#delike{
+  color: red;
+}
+
+#delete:hover{
+  color: red;
+}
+
+
+.Profil{
+  margin-top: 5%;
+  display: flex;
+  height: fit-content;
+}
+
+.Bio{
+  height: fit-content;
+  display: flex;
+}
+
+.infoProfil{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+}
+
+#imgPROFIL{
+  height: 10em;
+  width: 10em;
+}
+
+.NameProfil{
+  font-size: 2em;
+  color : white;
+  margin-top: 10%;
+}
+
+.bioText{
+  background-color: white;
+  width: 34.5em;
+  margin-left: 16%;
+  min-height: 100%;
+  border-radius: 15px;
+  height: 10em;
+  z-index: 0;
+}
+
+#text{
+  margin-left: 1em;
+}
+
+#followed{
+  margin-top: 20%;
+  z-index: 0;
+}
+
+#buttonText{
+  margin-bottom: 10px;
+}
+
+.button{
+  z-index: 0;
+}
+
+.Droite{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  height: fit-content;
+}
+
+#friendList{
+  height: fit-content;
+}
+
+.friend{
+  height: fit-content;
+}
+
+#friendButt{
+  margin-top: 20%;
+  margin-left: 10%;
+}
+
+.infoProfilButton{
+  margin-top: 20%;
+}
+
+
+.infoTextProfil{
+  color: white;
+  margin-top: 10%;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.borderInfo{
+  margin-top: 30px;
+}
+.toColorInfo{
+  border: solid;
+  border-color: #1c1c1c00;
+  margin-top: 20%;
+  box-shadow: 1px 1px 10px rgba(181, 43, 255, 0.438);
+  backdrop-filter: blur(10px);
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .toColorInfo {
+    background-color:  rgba(6,35,67, 0.9)
+  }
+}
+
+
+
+.twallContener{
+  display: flex;
+}
+
+.DroiteWALL{
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin-left: 5%;
+  width: 30%;
+}
+
+#formMsg{
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#newCom{
+  z-index: 0;
+  width: 100%;
+  height: 15em;
+  margin-top: 9%;
+  border-radius: 15px;
+  font-size: 1.2em;
+  box-shadow: 2px 2px 30px rgba(181, 43, 255, 0.438);
+}
+
+#addCom{
+  width: 10em;
+  margin-top: 5%;
+}
+
+
+#ediPic{
+  color: #a88beb;
+  width: 1.5em;
+  margin-top: 5px;
+}
+
+#ediPic:hover{
+  transform: scale(1.5);
+}
+
+
+.imgPicEdit{
+  width: 8em;
+  height: 8em;
+  margin-left: 5em;
+  margin-top: 5em;
+  margin-right: 5em;
+  border-radius: 60px;
+}
+
+.imgPicEdit:hover{
+  
+  box-shadow: 3px 3px 50px rgba(245, 2, 2, 0.438);
+  border-radius: 60px;
+}
+
+#bEDIT{
+  margin-top: 2em;
+  text-align: center;
+  margin-bottom: 2em
+}
+
+.contenerBEdit{
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+#editBIO{
+  color: #a88beb;
+}
+
+
+#editBIO:hover{
+  transform: scale(1.5);
+  color: #a88beb;
+}
+
+#formEDIT{
+  margin-left: 10%;
+  margin-right: 10%;
+}
