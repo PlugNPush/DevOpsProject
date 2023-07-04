@@ -21,6 +21,7 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
+        cache-dependency-path: server/package-lock.json
     - name: Install Dependencies
       working-directory: ./server
       run: npm i
@@ -42,6 +43,7 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
+        cache-dependency-path: my-app/package-lock.json
     - name: Install Dependencies
       working-directory: ./my-app
       run: npm i
