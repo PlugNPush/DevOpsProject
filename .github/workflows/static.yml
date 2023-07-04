@@ -56,6 +56,7 @@ jobs:
         path: './DevOpsFrontend/my-app/build'
         name: build
   deploy:
+    needs: build_frontend
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
