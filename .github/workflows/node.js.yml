@@ -32,7 +32,7 @@ jobs:
   build_frontend:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout Backend folder
       uses: actions/checkout@v3
@@ -50,12 +50,3 @@ jobs:
     - name: Build Project
       working-directory: ./DevOpsFrontend/my-app
       run: npm run build --if-present
-
-# Stop the workflow if the "test_folder_1" job fails
-  fail-on-test-failure:
-    needs: test_backend
-    if: ${{ needs.test_backend.result == 'failure' }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Fail the workflow
-      run: exit 1
