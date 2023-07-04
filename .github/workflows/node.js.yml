@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout Backend folder
+    - name: Checkout Frontend folder
       uses: actions/checkout@v3
       with:
         path: DevOpsFrontend
