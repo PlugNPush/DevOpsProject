@@ -53,26 +53,46 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: [test_backend, build_frontend]
     steps:
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
-        if: success()
+        if: ${{ needs.test_backend.result == 'success' }}
         with:
             severity: info
             details: Test Succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
-        if: failure()
+        if: ${{ needs.test_backend.result == 'failure' }}
         with:
           severity: error
           details: Test Failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Cancelled
         uses: rjstone/discord-webhook-notify@v1
-        if: cancelled()
+        if: ${{ needs.test_backend.result == 'cancelled' }}
         with:
           severity: warn
           details: Test Cancelled!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Build Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.build_frontend.result == 'success' }}
+        with:
+            severity: info
+            details: Build Succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Build Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.build_frontend.result == 'failure' }}
+        with:
+          severity: error
+          details: Build Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Build Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.build_frontend.result == 'cancelled' }}
+        with:
+          severity: warn
+          details: Build Cancelled!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

@@ -72,25 +72,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: [deploy, build_frontend]
     steps:
       - name: Deployment Success
         uses: rjstone/discord-webhook-notify@v1
-        if: success()
+        if: ${{ needs.deploy.result == 'success' }}
         with:
             severity: info
             details: Test Succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Failure
         uses: rjstone/discord-webhook-notify@v1
-        if: failure()
+        if: ${{ needs.deploy.result == 'failure' }}
         with:
           severity: error
           details: Test Failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Cancelled
         uses: rjstone/discord-webhook-notify@v1
-        if: cancelled()
+        if: ${{ needs.deploy.result == 'cancelled' }}
         with:
           severity: warn
           details: Test Cancelled!
