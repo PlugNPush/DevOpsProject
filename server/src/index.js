@@ -138,3 +138,5 @@ sync().then( () => {
   })
 
 })
+
+module.exports = { sync };

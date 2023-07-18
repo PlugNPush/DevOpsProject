@@ -3,6 +3,7 @@ const { route } = require("express/lib/application");
 const { getMochaID } = require("mocha/lib/utils");
 const { default: message } = require("./entities/message.js");
 const Users = require("./entities/users.js");
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
@@ -10,11 +11,13 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync();
     });
+
     const users = new Users.default(db);
 
     //fonction login
@@ -29,7 +32,6 @@ function init(db) {
                 });
                 return;
             }
-            console.log("Bon jusqu'ici on a login et password: ", login, password)
             var id = null
             await users.getID(login).then((resp) => id = resp)
             .catch((err) => console.log("ERROR",err))

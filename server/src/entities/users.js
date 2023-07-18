@@ -79,14 +79,11 @@ class Users {
             reject(err)
             return
           }
-          console.log("On a trouvé ça : ", docs[0].password, " et on cherche ça : ", password)
           if (docs[0].password != password){
-            console.log("oupsi")
             resolve(false)
             return
           }
           else  {
-            console.log("eh bah alors")
             resolve(true)
             return
           }
@@ -120,34 +117,14 @@ class Users {
 }
   getID(pseudo){
     return new Promise(async (resolve, reject) => {
-      console.log("On cherche on cherche... ", pseudo)
-      console.log("On cherche toujours... ", this.db.users)
-      console.log("Et on cherche encore... ")
-
-      try {
-        this.db.users.loadDatabase(function (err) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-
-          console.log('Database loaded successfully!');
-
-      
-        });
-      } catch (err) {
-        console.error('An error occurred:', err);
-      }
 
       this.db.users.find({}, function (err, users) {
         if (err) {
           console.error(err);
           return;
         }
-        console.log("On a trouvé ça : ", users)
       });
       this.db.users.find({login : pseudo},function(err,docs){
-        console.log("Si on est arrivé là c'est un exploit! ", docs, " et ", err)
         if(docs.length == 0){
           resolve(null)
           return
