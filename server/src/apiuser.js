@@ -79,7 +79,8 @@ function init(db) {
                 else {
                     // C'est bon, nouvelle session créée
                     users.login(login)
-                    .then((id) => {
+                    .then(async (id) => {
+                        await sync(db);
                         req.session.userid = id;
                         res.status(200).json({
                             status: 200,
