@@ -1,10 +1,13 @@
 const path = require('path');
 const cors = require('cors')
 var DataStore = require('nedb')
+const fs = require('fs')
 
 // Détermine le répertoire de base
 const basedir = path.normalize(path.dirname(__dirname));
 console.debug(`Base directory: ${basedir}`);
+console.log("Directory contains:")
+console.log(fs.readdirSync(basedir));
 
 db = {}
 db.users = new DataStore({filename : `${basedir}/bdUser.json`})
@@ -19,7 +22,6 @@ db.pp = new DataStore({filename : `${basedir}/bdPP.json`})
 db.pp.loadDatabase()
 db.bio = new DataStore({filename : `${basedir}/bdBIO.json`})
 db.bio.loadDatabase()
-
 
 
 
