@@ -54,5 +54,6 @@ app.use('/api',api_5.default(db));
 
 // Démarre le serveur
 app.on('close', () => {
+    console.log('Server closed');
 });
 exports.default = app;

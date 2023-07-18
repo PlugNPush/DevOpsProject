@@ -1,7 +1,8 @@
 
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3()
-const fs = require('fs')
+const fs = require('fs');
+const { exit } = require("process");
 
 async function init() {
 
@@ -105,6 +106,15 @@ async function sync() {
     console.log("Files synced with S3 (in theory)")
 }
 
+async function abort(server, appdef) {
+  console.log('TERMINATION signal received: closing HTTP server')
+  await sync().then(() => console.log("Backup done!")).catch(() => console.log("Backup failed!"))
+  server.close(() => {
+    appdef.emit('close');
+    console.log('HTTP server closed')
+  })
+}
+
 
 init().then( () => {
 
@@ -113,8 +123,18 @@ init().then( () => {
 
   const app = require("./app.js");
   const port = 3000;
-  app.default.listen(port, () => {
+  var server = app.default.listen(port, () => {
     console.log(`Serveur actif sur le port ${port}`);
   });
+
+
+
+  process.on('SIGTERM', () => {
+    abort(server, app.default).then(() => {console.log("SIGTERM"); exit(0);})
+  })
+
+  process.on('SIGINT', () => {
+    abort(server, app.default).then(() => {console.log("SIGINT"); exit(0);})
+  })
 
 })
