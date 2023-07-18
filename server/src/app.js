@@ -1,24 +1,30 @@
 const path = require('path');
 const cors = require('cors')
 var DataStore = require('nedb')
-db = {}
-db.users = new DataStore({filename : "./bdUser.json"})
-db.users.loadDatabase()
-db.friends = new DataStore({filename : "./bdFriend.json"})
-db.friends.loadDatabase()
-db.messages = new DataStore({filename : "./bdMessage.json"})
-db.messages.loadDatabase()
-db.likes = new DataStore({filename : "./bdLike.json"})
-db.likes.loadDatabase()
-db.pp = new DataStore({filename : "./bdPP.json"})
-db.pp.loadDatabase()
-db.bio = new DataStore({filename : "./bdBIO.json"})
-db.bio.loadDatabase()
-
 
 // Détermine le répertoire de base
 const basedir = path.normalize(path.dirname(__dirname));
 console.debug(`Base directory: ${basedir}`);
+
+db = {}
+db.users = new DataStore({filename : `${basedir}/bdUser.json`})
+db.users.loadDatabase()
+db.friends = new DataStore({filename : `${basedir}/bdFriend.json`})
+db.friends.loadDatabase()
+db.messages = new DataStore({filename : `${basedir}/bdMessage.json`})
+db.messages.loadDatabase()
+db.likes = new DataStore({filename : `${basedir}/bdLike.json`})
+db.likes.loadDatabase()
+db.pp = new DataStore({filename : `${basedir}/bdPP.json`})
+db.pp.loadDatabase()
+db.bio = new DataStore({filename : `${basedir}/bdBIO.json`})
+db.bio.loadDatabase()
+
+
+
+
+console.log(db.users);
+console.log(typeof db.users)
 
 express = require('express');
 const app = express()
