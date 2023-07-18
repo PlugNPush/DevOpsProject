@@ -120,6 +120,22 @@ class Users {
       console.log("On cherche on cherche... ", pseudo)
       console.log("On cherche toujours... ", this.db.users)
       console.log("Et on cherche encore... ")
+
+      try {
+        this.db.users.loadDatabase(function (err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+
+          console.log('Database loaded successfully!');
+
+      
+        });
+      } catch (err) {
+        console.error('An error occurred:', err);
+      }
+
       this.db.users.find({}, function (err, users) {
         if (err) {
           console.error(err);
