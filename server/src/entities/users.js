@@ -118,6 +118,15 @@ class Users {
   getID(pseudo){
     return new Promise(async (resolve, reject) => {
       console.log("On cherche on cherche... ", pseudo)
+      console.log("On cherche toujours... ", this.db.users)
+      console.log("Et on cherche encore... ")
+      this.db.users.find({}, function (err, users) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log("On a trouvé ça : ", users)
+      });
       this.db.users.find({login : pseudo},function(err,docs){
         console.log("Si on est arrivé là c'est un exploit! ", docs, " et ", err)
         if(docs.length == 0){
