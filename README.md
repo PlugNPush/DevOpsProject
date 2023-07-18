@@ -40,3 +40,15 @@ npx cypress open
 Then pick EC2 Testing, then Chrome and click on "Start E2E Testing in Chrome". Finally, click on "basic-test". The test
 is then running. If everything was ok, on the top left of the page you should see the picture the green cross. As follow :
 ![Test Cypress](./CypressTest.png)
+
+You can also launch the tests by command line :
+
+Which will lead to the following image :
+
+```shell
+cd ./my-app
+npx cypress run
+```
+
+![img.png](./Cypress-CmdLine.png)
+We can see that all tests passed (we have only one `basic-test.cy.js`).
