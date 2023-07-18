@@ -116,7 +116,7 @@ async function abort(server, appdef) {
 }
 
 
-init().then( () => {
+sync().then( () => {
 
   // Call sync every day
   setInterval(sync, 60 * 24 * 60 * 1000)
