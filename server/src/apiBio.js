@@ -14,7 +14,7 @@ function init(db) {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
-        await sync();
+        await sync(db);
     });
     const users = new Users.default(db)
     const bio = new BIO.default(db)
@@ -47,7 +47,7 @@ function init(db) {
 
 
         await bio.create(usr,req.body.bio)
-        .then(async () => await sync())
+        .then(async () => await sync(db))
         .then((rs) => {
             res.status(200).json({
                 status: 200,

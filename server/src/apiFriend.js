@@ -14,7 +14,7 @@ function init(db) {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
-        await sync();
+        await sync(db);
     });
     const friends = new Friend.default(db);
     const users = new Users.default(db)
@@ -67,7 +67,7 @@ function init(db) {
         }
 
         await friends.create(req.session.userid,req.params.user_login)
-            .then(async () => await sync())
+            .then(async () => await sync(db))
             .then((user_id) => {
                 res.status(200).json({
                      id: user_id 
@@ -326,7 +326,7 @@ function init(db) {
 
 
                 await friends.delete(req.session.userid,req.params.user_login)
-                .then(async () => await sync())
+                .then(async () => await sync(db))
                 .then((val) => {
                     res.status(200).json({
                         status: 200,

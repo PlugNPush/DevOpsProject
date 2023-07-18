@@ -59,12 +59,23 @@ async function init() {
 
 }
 
-async function sync() {
+async function sync(db = {}) {
 
     // Re-download all files from S3, then upload them again
     if (!fs.existsSync("/tmp/bdUser.json")) {
         console.log("Local file does not exist, creating it")
-        await init().then(() => console.log("Files downloaded from S3 (in theory)"))
+        await init().then(() => console.log("Should now be up to date"))
+    }
+
+    // If db is not empty, we need to merge it with the local file
+    if (Object.keys(db).length !== 0) {
+      db.users.persistence.compactDatafile()
+      db.friends.persistence.compactDatafile()
+      db.messages.persistence.compactDatafile()
+      db.likes.persistence.compactDatafile()
+      db.pp.persistence.compactDatafile()
+      db.bio.persistence.compactDatafile()
+      console.log("DB compacted")
     }
 
     await s3.putObject({
