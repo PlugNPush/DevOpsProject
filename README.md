@@ -3,7 +3,7 @@
 ![NodeJS current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/node.js.yml/badge.svg)  
 ![Static current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/static.yml/badge.svg)
 
-The live deployment of the website through the GitHub Actions CI Pipeline is available [here](https://plugnpush.github.io/DevOpsProject/).
+The live deployment of the website through the GitHub Actions CI Pipeline is available [here: https://plugnpush.github.io/DevOpsProject/](https://plugnpush.github.io/DevOpsProject/).
 
 ## Project Description
 
