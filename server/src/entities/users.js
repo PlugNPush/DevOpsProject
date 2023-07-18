@@ -79,11 +79,14 @@ class Users {
             reject(err)
             return
           }
+          console.log("On a trouvé ça : ", docs[0].password, " et on cherche ça : ", password)
           if (docs[0].password != password){
+            console.log("oupsi")
             resolve(false)
             return
           }
           else  {
+            console.log("eh bah alors")
             resolve(true)
             return
           }

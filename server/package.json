@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cyclic.sh/s3fs": "^1.2.9",
+    "aws-sdk": "^2.1417.0",
     "chai": "^4.3.0",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",

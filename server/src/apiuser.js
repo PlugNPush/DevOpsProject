@@ -56,11 +56,11 @@ function init(db) {
                     return;
                 }
             })
-            .catch((err) => console.log("ERROR",err),
-            res.status(403).json({
-                status: 403,
-                message: "login et/ou le mot de passe invalide(s)"
-            }))
+            .catch((err) => {console.log("ERROR",err)
+            res.status(500).json({
+                status: 500,
+                message: "Une erreur est survenue"
+            })})
             
             if (err){
                 return
