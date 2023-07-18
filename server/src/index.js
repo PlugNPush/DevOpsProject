@@ -64,6 +64,13 @@ async function sync(db = {}) {
     // Re-download all files from S3, then upload them again
     if (!fs.existsSync("/tmp/bdUser.json")) {
         console.log("Local file does not exist, creating it")
+        fs.copyFileSync("./bdUser.json", "/tmp/bdUser.json")
+        fs.copyFileSync("./bdFriend.json", "/tmp/bdFriend.json")
+        fs.copyFileSync("./bdMessage.json", "/tmp/bdMessage.json")
+        fs.copyFileSync("./bdLike.json", "/tmp/bdLike.json")
+        fs.copyFileSync("./bdPP.json", "/tmp/bdPP.json")
+        fs.copyFileSync("./bdBIO.json", "/tmp/bdBIO.json")
+        console.log("Local files created. Now downloading from S3...")
         await init().then(() => console.log("Should now be up to date"))
     }
 
