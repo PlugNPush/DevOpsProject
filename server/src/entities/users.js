@@ -117,7 +117,9 @@ class Users {
 }
   getID(pseudo){
     return new Promise(async (resolve, reject) => {
+      console.log("On cherche on cherche... ", pseudo)
       this.db.users.find({login : pseudo},function(err,docs){
+        console.log("Si on est arrivé là c'est un exploit! ", docs, " et ", err)
         if(docs.length == 0){
           resolve(null)
           return

@@ -29,8 +29,10 @@ function init(db) {
                 });
                 return;
             }
+            console.log("Bon jusqu'ici on a login et password: ", login, password)
             var id = null
             await users.getID(login).then((resp) => id = resp)
+            .catch((err) => console.log("ERROR",err))
 
             if (id == null){
                 res.status(401).json({
@@ -54,7 +56,11 @@ function init(db) {
                     return;
                 }
             })
-            .catch((err) => console.log("ERROR",err))
+            .catch((err) => console.log("ERROR",err),
+            res.status(403).json({
+                status: 403,
+                message: "login et/ou le mot de passe invalide(s)"
+            }))
             
             if (err){
                 return
