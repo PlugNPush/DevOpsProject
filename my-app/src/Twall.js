@@ -93,7 +93,7 @@ class Twall extends Component{
         const info = {
             pp : res
         }
-        axios.post("http://localhost:4000/api/pp/user",info,{withCredentials : true})
+        axios.post("https://devopsproject.cyclic.app/api/pp/user",info,{withCredentials : true})
         .then((res) => {
             console.log(res)
             this.goToProfil(this.props.login)
@@ -129,7 +129,7 @@ class Twall extends Component{
 
         const info = { bio : data.get("newCom")}
 
-        axios.post("http://localhost:4000/api/bio/user/",info,{withCredentials : true})
+        axios.post("https://devopsproject.cyclic.app/api/bio/user/",info,{withCredentials : true})
         .then((res) => this.goToProfil(this.props.login))
         .catch((err) => console.log(err))
     }

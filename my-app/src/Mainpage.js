@@ -23,14 +23,14 @@ class Mainpage extends Component{
         this.getLogin()
     }
     getLogin(){
-        axios.get("http://localhost:4000/api/user",{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/user",{},{withCredentials : true})
         .then((res) => {
             this.setState({Mylogin : res.data.login})
         })
         .catch((err) => console.log(err))
     }
     checkConnected(){
-    axios.get('http://localhost:4000/api/user/check/isConnected',{/**/},{withCredentials : true})
+    axios.get('https://devopsproject.cyclic.app/api/user/check/isConnected',{/**/},{withCredentials : true})
         .then((res) => {
             if (res.data.connected){
                 console.log(res.data)

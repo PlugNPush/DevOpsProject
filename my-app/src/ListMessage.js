@@ -18,7 +18,7 @@ class ListMessage extends Component {
         if (this.props.find) {
             const info = { keyword: this.props.find }
 
-            axios.put("http://localhost:4000/api/messages/all", info, { withCredentials: true })
+            axios.put("https://devopsproject.cyclic.app/api/messages/all", info, { withCredentials: true })
                 .then((res) => {
                     console.log(res.data)
                     var ls = []
@@ -44,7 +44,7 @@ class ListMessage extends Component {
     getMessageFriend() {
         var ls = []
 
-        axios.get("http://localhost:4000/api/messages/user/messages/friends", {}, { withCredentials: true })
+        axios.get("https://devopsproject.cyclic.app/api/messages/user/messages/friends", {}, { withCredentials: true })
             .then((res) => {
                 for (let i = 0; i < res.data.messages.length; i++) {
                     for (let k = 0; k < res.data.messages[i].message.length; k++) {
@@ -61,7 +61,7 @@ class ListMessage extends Component {
     getMessageUser() {
         var ls = []
 
-        axios.get("http://localhost:4000/api/messages/user/" + this.props.login + "/messages/", {}, { withCredentials: true })
+        axios.get("https://devopsproject.cyclic.app/api/messages/user/" + this.props.login + "/messages/", {}, { withCredentials: true })
             .then((res) => {
                 for (let i = 0; i < res.data.listMessages.length; i++) {
                     ls.push({ login: this.props.login, text: res.data.listMessages[i] })

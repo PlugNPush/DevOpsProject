@@ -34,7 +34,7 @@ class Profil extends Component{
     }
 
     getPP(){
-        axios.get("http://localhost:4000/api/pp/get/"+this.props.login,{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/pp/get/"+this.props.login,{},{withCredentials : true})
         .then((res) => {
             this.setState({pp : res.data.pp})
         })
@@ -42,7 +42,7 @@ class Profil extends Component{
     }
 
     getBIO(){
-        axios.get("http://localhost:4000/api/bio/get/"+this.props.login,{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/bio/get/"+this.props.login,{},{withCredentials : true})
         .then((res) => {
             console.log(res.data)
             this.setState({bio : res.data.bio})
@@ -56,7 +56,7 @@ class Profil extends Component{
         this.getPP()
         this.getBIO()
 
-        axios.get("http://localhost:4000/api/messages/user/"+this.props.login+"/messages/",{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/messages/user/"+this.props.login+"/messages/",{},{withCredentials : true})
         .then((res) => {
             this.setState({nbM : res.data.listMessages.length})
         })
@@ -73,7 +73,7 @@ class Profil extends Component{
     }
     isMe(){
         console.log(this.props.login)
-        axios.get("http://localhost:4000/api/user",{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/user",{},{withCredentials : true})
         .then((res) => {
             if (this.props.login === res.data.login) this.setState({isMe : true})
         })
@@ -81,7 +81,7 @@ class Profil extends Component{
     }
     getIfFollow(){
         if (this.state.isMe) return
-        axios.get("http://localhost:4000/api/friend/user/friends/"+this.props.login,{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/friend/user/friends/"+this.props.login,{},{withCredentials : true})
         .then((res) => {
             if (res.data.status === 200) this.setState({followed : true})
         })
@@ -89,12 +89,12 @@ class Profil extends Component{
     }
     onClick(){
         if (!this.state.followed){
-            axios.put("http://localhost:4000/api/friend/user/"+this.props.login+"/friends",{},{withCredentials : true})
+            axios.put("https://devopsproject.cyclic.app/api/friend/user/"+this.props.login+"/friends",{},{withCredentials : true})
             .catch((err) => console.log(err))
         }
         else{
 
-            axios.delete("http://localhost:4000/api/friend/user/friends/"+this.props.login,{},{withCredentials : true})
+            axios.delete("https://devopsproject.cyclic.app/api/friend/user/friends/"+this.props.login,{},{withCredentials : true})
             .catch((err) => console.log(err))
         }
         this.setState({followed : !this.state.followed})

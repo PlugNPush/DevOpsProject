@@ -28,7 +28,7 @@ class SigninForm extends Component{
                 lastname: data.get("nom"),
                 firstname: data.get("prenom")
             }
-            axios.put("http://localhost:4000/api/user",info,{withCredentials : true})
+            axios.put("https://devopsproject.cyclic.app/api/user",info,{withCredentials : true})
             .then((res) => this.props.goBack())
             .catch((err) => {
                 if (err.toJSON().status === 400){

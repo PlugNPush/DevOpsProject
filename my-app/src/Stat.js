@@ -20,7 +20,7 @@ class Stat extends Component{
     }
 
     getNbFollowers(){
-        axios.get("http://localhost:4000/api/friend/followers/"+this.props.login,{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/friend/followers/"+this.props.login,{},{withCredentials : true})
         .then((res) => {
             this.setState({NumFollow : res.data.nbFollowers})
         })
@@ -28,14 +28,14 @@ class Stat extends Component{
     }
 
     getNbMessages(){
-        axios.get("http://localhost:4000/api/messages/user/"+this.props.login+"/stats",{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/messages/user/"+this.props.login+"/stats",{},{withCredentials : true})
         .then((res) => {
             this.setState({nbMessages : res.data.count})
         })
         .catch((err) => console.log(err))
     }
     getNbLikers(){
-        axios.get("http://localhost:4000/api/messages/nblikers/"+this.props.login, {}, {withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/messages/nblikers/"+this.props.login, {}, {withCredentials : true})
         .then((res)=>{
             this.setState({nbLikers : res.data.nbLikes})
         })
