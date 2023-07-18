@@ -10,10 +10,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync();
     });
     const friends = new Friend.default(db);
     const users = new Users.default(db)
@@ -66,6 +67,7 @@ function init(db) {
         }
 
         await friends.create(req.session.userid,req.params.user_login)
+            .then(async () => await sync())
             .then((user_id) => {
                 res.status(200).json({
                      id: user_id 
@@ -324,6 +326,7 @@ function init(db) {
 
 
                 await friends.delete(req.session.userid,req.params.user_login)
+                .then(async () => await sync())
                 .then((val) => {
                     res.status(200).json({
                         status: 200,

@@ -9,10 +9,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync();
     });
     const users = new Users.default(db)
     const pp = new PP.default(db)
@@ -42,6 +43,7 @@ function init(db) {
                 return;
             }   
             await pp.create(usr,req.body.pp)
+            .then(async () => await sync())
             .then((rs) => {
                 res.status(200).json({
                     status: 200,

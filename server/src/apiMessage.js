@@ -10,10 +10,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync();
     });
     const friends = new Friend.default(db);
     const users = new Users.default(db)
@@ -55,7 +56,9 @@ function init(db) {
             return;
         }
         
-        await messages.create(usr.login,message).then((resp) => {
+        await messages.create(usr.login,message)
+        .then(async () => await sync())
+        .then((resp) => {
                 res.status(200).json({
                     status : 200,
                     id : resp
@@ -102,6 +105,7 @@ function init(db) {
                 }
 
                 await messages.supLike(req.session.userid,msg1)
+                .then(async () => await sync())
                 .then((rep) => {
                     res.status(200).json({
                         status: 200,
@@ -221,6 +225,7 @@ function init(db) {
                 }
 
                 await messages.like(req.session.userid,msg1)
+                .then(async () => await sync())
                 .then((resp) => {
                     res.status(200).json({
                         status: 200,
@@ -292,7 +297,9 @@ function init(db) {
                     })
                     return
                 })
-                await messages.set(usr.login, old_message, new_message).then((val)=>{
+                await messages.set(usr.login, old_message, new_message)
+                .then(async () => await sync())
+                .then((val)=>{
                     res.status(200).json({
                         status:200,
                         message : "Modification Effectuee"
@@ -364,7 +371,9 @@ function init(db) {
                     return;
                 }
 
-                await messages.delete(usr.login, msg).then(()=>{
+                await messages.delete(usr.login, msg)
+                .then(async () => await sync())
+                .then(()=>{
                     res.status(200).json({
                         status : 200,
                         message : "Message " + msg + " supprime"
