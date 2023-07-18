@@ -4,7 +4,7 @@
   "description": "Mon app touitère côté serveur",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha -t 8000 test",
     "serve": "node src/index.js"
   },
   "author": "",

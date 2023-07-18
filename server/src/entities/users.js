@@ -118,12 +118,6 @@ class Users {
   getID(pseudo){
     return new Promise(async (resolve, reject) => {
 
-      this.db.users.find({}, function (err, users) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
       this.db.users.find({login : pseudo},function(err,docs){
         if(docs.length == 0){
           resolve(null)

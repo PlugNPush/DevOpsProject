@@ -59,7 +59,7 @@ async function init() {
 
 }
 
-async function sync(db = {}) {
+async function sync(db) {
 
     // Re-download all files from S3, then upload them again
     if (!fs.existsSync("/tmp/bdUser.json")) {
@@ -124,15 +124,6 @@ async function sync(db = {}) {
     console.log("Files synced with S3 (in theory)")
 }
 
-async function abort(server, appdef) {
-  console.log('TERMINATION signal received: closing HTTP server')
-  await sync().then(() => console.log("Backup done!")).catch(() => console.log("Backup failed!"))
-  server.close(() => {
-    appdef.emit('close');
-    console.log('HTTP server closed')
-  })
-}
-
 
 sync().then( () => {
 
@@ -144,16 +135,6 @@ sync().then( () => {
   var server = app.default.listen(port, () => {
     console.log(`Serveur actif sur le port ${port}`);
   });
-
-
-
-  process.on('SIGTERM', () => {
-    abort(server, app.default).then(() => {console.log("SIGTERM"); exit(0);})
-  })
-
-  process.on('SIGINT', () => {
-    abort(server, app.default).then(() => {console.log("SIGINT"); exit(0);})
-  })
 
 })
 
