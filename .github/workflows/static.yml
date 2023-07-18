@@ -44,6 +44,7 @@ jobs:
       with:
         path: './DevOpsFrontend/my-app/build'
         name: build
+
   deploy:
     needs: build_frontend
     environment:
@@ -68,22 +69,50 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
 
-  send_notifaction:
+  cypress_test:
 
     runs-on: ubuntu-latest
 
     needs: deploy
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js 20.3.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.3.1
+          cache: 'npm'
+          cache-dependency-path: DevOpsFrontend/my-app/package-lock.json
+      - name: Install Dependencies
+        working-directory: ./DevOpsFrontend/my-app
+        run: npm i
+      - name: Run Cypress Tests
+        working-directory: ./DevOpsFrontend/my-app
+        run: npx cypress run
+
+  send_notifaction:
+
+    runs-on: ubuntu-latest
+    if : always()
+    needs: cypress_test
+    steps:
       - name: Deployment Success
         uses: rjstone/discord-webhook-notify@v1
-        if: ${{ needs.deploy.result == 'success' }}
+        if: ${{ needs.cypress_test.result == 'success' }}
         with:
             severity: info
             details: Test Succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Deployment Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.cypress_test.result == 'cancelled' }}
+        with:
+          severity: warning
+          details: Test Cancelled!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Failure
         uses: rjstone/discord-webhook-notify@v1
-        if: ${{ needs.deploy.result == 'failure' }}
+        if: ${{ needs.cypress_test.result == 'failure' }}
         with:
           severity: error
           details: Test Failed!
