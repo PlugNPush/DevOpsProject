@@ -4,7 +4,7 @@ In the project directory, you can run:
 
 ### `npm run serve`
 
-Allows the backend to be run on port 443.\
+Allows the backend to be run on port 3000.\
 
 ### `npm test`
 
