@@ -1,11 +1,18 @@
 #!/bin/bash
 
-URL="https://plugnpush.github.io/DevOpsProject/"
+assert_site_responding() {
+  url=$1
+  expected_status_code=$2
 
-response_code=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+  http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
 
-if [ "$response_code" -eq 200 ]; then
-  echo "The page is responding."
-else
-  echo "The page is not responding. Response code: $response_code"
-fi
+  if [ "$http_status" -ne "$expected_status_code" ]; then
+    echo "Assertion failed: Expected status code $expected_status_code but got $http_status for URL: $url" >&2
+    exit 1
+  fi
+}
+
+url="https://plugnpush.github.io/DevOpsProject/"
+expected_status_code=200
+
+assert_site_responding "$url" "$expected_status_code"
