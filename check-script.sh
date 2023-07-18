@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL="https://www.google.com"
+URL="https://plugnpush.github.io/DevOpsProject/"
 
 response_code=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
 
