@@ -3,6 +3,7 @@ const express = require("express");
 const { route } = require("express/lib/application");
 const Friend = require("./entities/friends.js");
 const Users = require("./entities/users.js")
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();

@@ -3,6 +3,7 @@ const Friend = require("./entities/friends.js");
 const Users = require("./entities/users.js")
 const Messages = require("./entities/message.js");
 const { default: message } = require("./entities/message.js");
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();

@@ -3,6 +3,7 @@ const express = require("express");
 const { route } = require("express/lib/application");
 const Users = require("./entities/users.js")
 const BIO = require("./entities/bio.js")
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
