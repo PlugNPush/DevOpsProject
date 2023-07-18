@@ -21,7 +21,7 @@ class PostMessage extends Component{
 
         
 
-        axios.post("http://localhost:4000/api/messages/user/messages",info,{withCredentials : true})
+        axios.post("https://devopsproject.cyclic.app/api/messages/user/messages",info,{withCredentials : true})
             .then((res) => {
                 this.setState({refresh : !this.state.refresh})
                 const button = document.getElementById("addCom")

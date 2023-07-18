@@ -29,7 +29,7 @@ class Message extends Component{
     }
 
     getPP(){
-        axios.get("http://localhost:4000/api/pp/get/"+this.props.login,{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/pp/get/"+this.props.login,{},{withCredentials : true})
         .then((res) => {
             this.setState({pp : res.data.pp})
         })
@@ -37,7 +37,7 @@ class Message extends Component{
     }
 
     checkIsMe(){
-        axios.get("http://localhost:4000/api/user",{},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/user",{},{withCredentials : true})
         .then((res) => {
             this.setState({isMe : res.data.login === this.props.login})
         })
@@ -55,7 +55,7 @@ class Message extends Component{
             login : this.props.login,
             message : this.props.text
         }
-        axios.put("http://localhost:4000/api/messages/user/likes",info,{withCredentials : true})
+        axios.put("https://devopsproject.cyclic.app/api/messages/user/likes",info,{withCredentials : true})
         .then((res) => this.setState({liked : res.data.liker}))
         .catch((err) => console.log(err.message))
 
@@ -79,7 +79,7 @@ class Message extends Component{
         const info = {
             message : this.props.text
         }
-        axios.put("http://localhost:4000/api/messages/user/messages/delete",info,{withCredentials : true})
+        axios.put("https://devopsproject.cyclic.app/api/messages/user/messages/delete",info,{withCredentials : true})
         .then((res) => {
             this.props.goToProfil(this.props.login)
         })
@@ -92,7 +92,7 @@ class Message extends Component{
                 login : this.props.login,
                 message : this.props.text
             }
-            axios.put("http://localhost:4000/api/messages/likes",info,{withCredentials : true})
+            axios.put("https://devopsproject.cyclic.app/api/messages/likes",info,{withCredentials : true})
             .then((res) => {
                 this.setState({liked : !this.state.liked})
             })
@@ -103,7 +103,7 @@ class Message extends Component{
                 login : this.props.login,
                 message : this.props.text
             }
-            axios.put("http://localhost:4000/api/messages/delikes/",info,{withCredentials : true})
+            axios.put("https://devopsproject.cyclic.app/api/messages/delikes/",info,{withCredentials : true})
             .then((res) => this.setState({liked : !this.state.liked}))
             .catch((err) => console.log(err.message))
         }

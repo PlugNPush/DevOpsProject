@@ -20,7 +20,7 @@ class LoginForm extends Component{
         event.preventDefault()
 
 
-        axios.post("http://localhost:4000/api/user/login",{login: data.get("prenom"), password : data.get("nom")},{withCredentials : true})
+        axios.post("https://devopsproject.cyclic.app/api/user/login",{login: data.get("prenom"), password : data.get("nom")},{withCredentials : true})
         .then((res) => {
             if (res.status === 200) this.props.checkCo()
         })

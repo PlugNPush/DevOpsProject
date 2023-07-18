@@ -25,7 +25,7 @@ class BarInfo extends Component{
     }
 
     logout(){
-        axios.delete('http://localhost:4000/api/user/logout',{/**/},{withCredentials : true})
+        axios.delete('https://devopsproject.cyclic.app/api/user/logout',{/**/},{withCredentials : true})
         .then((res) => {
             if (res.data.status === 200) this.props.logout()
         })

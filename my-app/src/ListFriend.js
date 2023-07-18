@@ -19,7 +19,7 @@ class ListFriend extends Component{
     }
 
     friend(){
-        axios.get("http://localhost:4000/api/friend/user/"+this.props.login+"/friends",{/**/},{withCredentials : true})
+        axios.get("https://devopsproject.cyclic.app/api/friend/user/"+this.props.login+"/friends",{/**/},{withCredentials : true})
         .then((res) => {
             this.setState({friend : res.data.listFriend})
         })
