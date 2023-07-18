@@ -71,57 +71,67 @@ async function sync(db) {
         fs.copyFileSync("./bdPP.json", "/tmp/bdPP.json")
         fs.copyFileSync("./bdBIO.json", "/tmp/bdBIO.json")
         console.log("Local files created. Now downloading from S3...")
-        await init().then(() => console.log("Should now be up to date"))
+        var isInTest = typeof global.it === 'function';
+        if (!isInTest) {
+          await init().then(() => console.log("Should now be up to date"))
+        } else {
+          console.log("In test, skipping init to avoid edited database (it might break tests)")
+        }
     }
 
-    // If db is not empty, we need to merge it with the local file
-    if (Object.keys(db).length !== 0) {
-      db.users.persistence.compactDatafile()
-      db.friends.persistence.compactDatafile()
-      db.messages.persistence.compactDatafile()
-      db.likes.persistence.compactDatafile()
-      db.pp.persistence.compactDatafile()
-      db.bio.persistence.compactDatafile()
-      console.log("DB compacted")
-    }
+    var isInTest = typeof global.it === 'function';
+        if (!isInTest) {
+            // If db is not empty, we need to merge it with the local file
+            if (Object.keys(db).length !== 0) {
+              await db.users.persistence.compactDatafile()
+              await db.friends.persistence.compactDatafile()
+              await db.messages.persistence.compactDatafile()
+              await db.likes.persistence.compactDatafile()
+              await db.pp.persistence.compactDatafile()
+              await db.bio.persistence.compactDatafile()
+              console.log("DB compacted")
+            }
+    
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdUser.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdUser.json`,
+            }).promise()
 
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdUser.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdUser.json`,
-    }).promise()
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdFriend.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdFriend.json`,
+            }).promise()
+            
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdMessage.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdMessage.json`,
+            }).promise()
+            
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdLike.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdLike.json`,
+            }).promise()
+            
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdPP.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdPP.json`,
+            }).promise()
+            
+            await s3.putObject({
+                Body: fs.readFileSync("/tmp/bdBIO.json"),
+                Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
+                Key: `bdBIO.json`,
+            }).promise()
 
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdFriend.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdFriend.json`,
-    }).promise()
-    
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdMessage.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdMessage.json`,
-    }).promise()
-    
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdLike.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdLike.json`,
-    }).promise()
-    
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdPP.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdPP.json`,
-    }).promise()
-    
-    await s3.putObject({
-        Body: fs.readFileSync("/tmp/bdBIO.json"),
-        Bucket: "cyclic-outstanding-wetsuit-tick-eu-central-1",
-        Key: `bdBIO.json`,
-    }).promise()
-
-    console.log("Files synced with S3 (in theory)")
+            console.log("Files synced with S3 (in theory)")
+  } else {
+    console.log("In test, skipping sync to avoid accessing the production database (it might break tests)")
+  }
 }
 
 
