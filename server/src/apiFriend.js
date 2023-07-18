@@ -67,8 +67,8 @@ function init(db) {
         }
 
         await friends.create(req.session.userid,req.params.user_login)
-            .then(async () => await sync(db))
-            .then((user_id) => {
+            .then(async (user_id) => {
+                await sync(db); 
                 res.status(200).json({
                      id: user_id 
                 })
@@ -326,8 +326,8 @@ function init(db) {
 
 
                 await friends.delete(req.session.userid,req.params.user_login)
-                .then(async () => await sync(db))
-                .then((val) => {
+                .then(async (val) => {
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "unfollow " + req.params.user_login

@@ -43,8 +43,8 @@ function init(db) {
                 return;
             }   
             await pp.create(usr,req.body.pp)
-            .then(async () => await sync(db))
-            .then((rs) => {
+            .then(async (rs) => {
+                await sync(db); 
                 res.status(200).json({
                     status: 200,
                     message: rs

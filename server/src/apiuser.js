@@ -146,8 +146,7 @@ function init(db) {
                 res.status(400).send("Missing fields");
             } else {
                 users.create(login, password, lastname, firstname)
-                    .then(async () => await sync(db))
-                    .then((user_id) => res.status(201).send({ id: user_id }))
+                    .then(async (user_id) => {await sync(db); res.status(201).send({ id: user_id })})
                     .catch((err) => res.status(500).send(err));
             }
         });
@@ -175,8 +174,8 @@ function init(db) {
                 })
                 req.session.destroy((err) => { });
                 await users.logout(user.login)
-                .then(async () => await sync(db))
-                .then(()=>{
+                .then(async ()=>{
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "Session fermee"
@@ -211,8 +210,9 @@ function init(db) {
                     return;
                 })
                 await users.delete(req.params.user_login)
-                .then(async () => await sync(db))
-                .then(()=>{res.status(200).json({
+                .then(async ()=>{
+                    await sync(db); 
+                    res.status(200).json({
                     status: 200,
                     message: "Suppresion effectuee"
                 });

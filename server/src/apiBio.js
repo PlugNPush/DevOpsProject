@@ -47,8 +47,8 @@ function init(db) {
 
 
         await bio.create(usr,req.body.bio)
-        .then(async () => await sync(db))
-        .then((rs) => {
+        .then(async (rs) => {
+            await sync(db); 
             res.status(200).json({
                 status: 200,
                 message: rs

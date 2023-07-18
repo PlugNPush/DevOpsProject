@@ -57,8 +57,8 @@ function init(db) {
         }
         
         await messages.create(usr.login,message)
-        .then(async () => await sync(db))
-        .then((resp) => {
+        .then(async (resp) => {
+                await sync(db); 
                 res.status(200).json({
                     status : 200,
                     id : resp
@@ -105,8 +105,8 @@ function init(db) {
                 }
 
                 await messages.supLike(req.session.userid,msg1)
-                .then(async () => await sync(db))
-                .then((rep) => {
+                .then(async (rep) => {
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "Like sup"
@@ -225,8 +225,8 @@ function init(db) {
                 }
 
                 await messages.like(req.session.userid,msg1)
-                .then(async () => await sync(db))
-                .then((resp) => {
+                .then(async (resp) => {
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "Message liker"
@@ -298,8 +298,8 @@ function init(db) {
                     return
                 })
                 await messages.set(usr.login, old_message, new_message)
-                .then(async () => await sync(db))
-                .then((val)=>{
+                .then(async (val)=>{
+                    await sync(db); 
                     res.status(200).json({
                         status:200,
                         message : "Modification Effectuee"
@@ -372,8 +372,8 @@ function init(db) {
                 }
 
                 await messages.delete(usr.login, msg)
-                .then(async () => await sync(db))
-                .then(()=>{
+                .then(async ()=>{
+                    await sync(db); 
                     res.status(200).json({
                         status : 200,
                         message : "Message " + msg + " supprime"
