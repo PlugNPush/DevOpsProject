@@ -9,6 +9,8 @@ assert_site_responding() {
   if [ "$http_status" -ne "$expected_status_code" ]; then
     echo "Assertion failed: Expected status code $expected_status_code but got $http_status for URL: $url" >&2
     exit 1
+  else
+    echo "Assertion succeeded"
   fi
 }
 
