@@ -2,6 +2,7 @@ const express = require("express");
 const Users = require("./entities/users.js")
 const PP = require("./entities/pp.js")
 const { default: message } = require("./entities/message.js");
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
