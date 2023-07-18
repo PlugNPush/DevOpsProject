@@ -2,7 +2,7 @@
   "name": "touitere",
   "version": "1.0.0",
   "description": "Mon app touitère côté serveur",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha test",
     "serve": "node src/index.js"
