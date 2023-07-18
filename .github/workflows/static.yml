@@ -87,7 +87,7 @@ jobs:
           cache-dependency-path: DevOpsFrontend/my-app/package-lock.json
       - name: Install Dependencies
         working-directory: ./DevOpsFrontend/my-app
-        run: npm i
+        run: npm i cypress
       - name: Run Cypress Tests
         working-directory: ./DevOpsFrontend/my-app
         run: npx cypress run
