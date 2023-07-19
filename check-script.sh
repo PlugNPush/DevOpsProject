@@ -14,7 +14,7 @@ assert_site_responding() {
   fi
 }
 
-url="https://plugnpush.github.io/DevOpsProject/t"
+url="https://plugnpush.github.io/DevOpsProject/"
 expected_status_code=200
 
 assert_site_responding "$url" "$expected_status_code"
