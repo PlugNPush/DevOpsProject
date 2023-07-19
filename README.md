@@ -1,7 +1,9 @@
-# DevOpsProject
+# DevOpsProject - Group 10
 
 ![NodeJS current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/node.js.yml/badge.svg)  
 ![Static current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/static.yml/badge.svg)
+
+Members: LACHAUD Antoine, LE LAY Logan, MARGUET Vincent, MARQUES Romain, NASS Michaël, RINCHEVAL Antoine, THAVARASA Jathoosh  
 
 The project report in PDF format is avalable [here](https://github.com/PlugNPush/DevOpsProject/blob/main/Project%20Report.pdf).
 
@@ -21,9 +23,6 @@ More importantly, as students, we choose Cyclic because it is free (with limits)
 <img alt="Screenshot 2023-07-19 at 21 48 43" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/1bc37977-4b4f-4af3-b9a3-92e7d961d848"><br>  
 <img alt="Screenshot 2023-07-19 at 21 50 27" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/04be76a9-6d2b-4f58-bd5b-b14f8e5e43d1"><br>
 <img alt="Screenshot 2023-07-19 at 21 51 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/bf0b265f-9f80-4c96-8fb9-ab68f9297cc4"><br>
-
-
-
 
 
 ## Project Description
