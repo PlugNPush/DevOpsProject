@@ -82,7 +82,7 @@ async function sync(db) {
     var isInTest = typeof global.it === 'function';
         if (!isInTest) {
             // If db is not empty, we need to merge it with the local file
-            if (Object.keys(db).length !== 0) {
+            if (db && Object.keys(db).length !== 0) {
               await db.users.persistence.compactDatafile()
               await db.friends.persistence.compactDatafile()
               await db.messages.persistence.compactDatafile()
