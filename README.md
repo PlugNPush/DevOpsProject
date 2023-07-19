@@ -3,6 +3,8 @@
 ![NodeJS current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/node.js.yml/badge.svg)  
 ![Static current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/static.yml/badge.svg)
 
+The project report in PDF format is avalable [here](https://github.com/PlugNPush/DevOpsProject/blob/main/Project%20Report.pdf).
+
 The live deployment of the website through the GitHub Actions CI Pipeline is available [here: https://plugnpush.github.io/DevOpsProject/](https://plugnpush.github.io/DevOpsProject/).  
 
 We decided to go a step further, and also take care of the backend deployment, using the Cyclic cloud provider and AWS for the database storage.  
