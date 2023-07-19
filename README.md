@@ -20,9 +20,12 @@ More importantly, as students, we choose Cyclic because it is free (with limits)
 <img alt="Screenshot 2023-07-19 at 21 45 19" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/2b140aa8-9c59-40f2-8a93-2a2fa11bd7db"><br>  
 <img alt="Screenshot 2023-07-19 at 21 45 36" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/483c4cc7-c312-4d05-989b-98c855339a35"><br>  
 <img alt="Screenshot 2023-07-19 at 21 45 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/c656a109-c56c-4226-baeb-e4c38dc95d70"><br>  
+<img alt="Screenshot 2023-07-19 at 22 15 11" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/e753bf83-6b94-47bc-894a-1bd7c452fe24"><br>  
+<img alt="Screenshot 2023-07-19 at 22 15 59" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/44e8de6c-bf37-4ff6-af6e-2cfec14c3e71"><br>  
+<img alt="Screenshot 2023-07-19 at 22 17 08" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/83e9381a-8e7f-44aa-854b-d7b619b56928"><br>  
 <img alt="Screenshot 2023-07-19 at 21 48 43" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/1bc37977-4b4f-4af3-b9a3-92e7d961d848"><br>  
-<img alt="Screenshot 2023-07-19 at 21 50 27" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/04be76a9-6d2b-4f58-bd5b-b14f8e5e43d1"><br>
-<img alt="Screenshot 2023-07-19 at 21 51 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/bf0b265f-9f80-4c96-8fb9-ab68f9297cc4"><br>
+<img alt="Screenshot 2023-07-19 at 21 50 27" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/04be76a9-6d2b-4f58-bd5b-b14f8e5e43d1"><br>  
+<img alt="Screenshot 2023-07-19 at 21 51 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/bf0b265f-9f80-4c96-8fb9-ab68f9297cc4"><br>  
 
 
 ## Project Description
