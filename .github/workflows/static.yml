@@ -69,6 +69,21 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
 
+        
+  deploy_test:
+
+    runs-on: ubuntu-latest
+
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: DevOpsFrontend
+      - name: Run Deployment Tests
+        working-directory: ./DevOpsFrontend
+        run: sh check-script.sh
+
   cypress_test:
 
     runs-on: ubuntu-latest
@@ -96,26 +111,47 @@ jobs:
 
     runs-on: ubuntu-latest
     if : always()
-    needs: cypress_test
+    needs: [deploy_test, cypress_test]
     steps:
+      - name: Deployment Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.deploy_test.result == 'success' }}
+        with:
+            severity: info
+            details: Deployment Test Succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Deployment Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.deploy_test.result == 'cancelled' }}
+        with:
+          severity: warning
+          details: Deployment Test Cancelled!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Deployment Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ needs.deploy_test.result == 'failure' }}
+        with:
+          severity: error
+          details: Deployment Test Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Success
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ needs.cypress_test.result == 'success' }}
         with:
             severity: info
-            details: Test Succeeded!
+            details: Cypress Test Succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Cancelled
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ needs.cypress_test.result == 'cancelled' }}
         with:
           severity: warning
-          details: Test Cancelled!
+          details: Cypress Test Cancelled!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deployment Failure
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ needs.cypress_test.result == 'failure' }}
         with:
           severity: error
-          details: Test Failed!
+          details: Cypress Test Failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

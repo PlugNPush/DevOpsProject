@@ -3,7 +3,16 @@
 ![NodeJS current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/node.js.yml/badge.svg)  
 ![Static current tests status](https://github.com/plugnpush/devopsproject/actions/workflows/static.yml/badge.svg)
 
-The live deployment of the website through the GitHub Actions CI Pipeline is available [here: https://plugnpush.github.io/DevOpsProject/](https://plugnpush.github.io/DevOpsProject/).
+The live deployment of the website through the GitHub Actions CI Pipeline is available [here: https://plugnpush.github.io/DevOpsProject/](https://plugnpush.github.io/DevOpsProject/).  
+
+We decided to go a step further, and also take care of the backend deployment, using the Cyclic cloud provider and AWS for the database storage.  
+The backend API and database is deployed in parallel with the static deployment to GitHub Pages, and is available at [https://devopsproject.cyclic.app](https://devopsproject.cyclic.app).  
+You can try the API by accessing [this link](https://devopsproject.cyclic.app/api/user/isConnected), you should see a JSON output saying that the user was not found.  
+
+Cyclic uses a serverless achitecture that is built on top of AWS Lambda and allows us inside the private network to access a dedicated Amazon S3 bucket to store our database files. The access to AWS is granted by dynamically changing environment variables, automatically used by the AWS SDK in real-time.  
+Cyclic also provides an access to an Amazon Dynamo DB instance for more efficient database processing, but the current implementation of the code does not support it as it is (as it is raw json-like file based).  
+More importantly, as students, we choose Cyclic because it is free (with limits), but we could integrate any other deployment environemnt service, if not AWS/Azure directly.  
+
 
 ## Project Description
 

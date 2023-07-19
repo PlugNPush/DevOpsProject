@@ -3,6 +3,7 @@ const { route } = require("express/lib/application");
 const { getMochaID } = require("mocha/lib/utils");
 const { default: message } = require("./entities/message.js");
 const Users = require("./entities/users.js");
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
@@ -10,11 +11,13 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync(db);
     });
+
     const users = new Users.default(db);
 
     //fonction login
@@ -31,6 +34,7 @@ function init(db) {
             }
             var id = null
             await users.getID(login).then((resp) => id = resp)
+            .catch((err) => console.log("ERROR",err))
 
             if (id == null){
                 res.status(401).json({
@@ -54,7 +58,11 @@ function init(db) {
                     return;
                 }
             })
-            .catch((err) => console.log("ERROR",err))
+            .catch((err) => {console.log("ERROR",err)
+            res.status(500).json({
+                status: 500,
+                message: "Une erreur est survenue"
+            })})
             
             if (err){
                 return
@@ -71,7 +79,8 @@ function init(db) {
                 else {
                     // C'est bon, nouvelle session créée
                     users.login(login)
-                    .then((id) => {
+                    .then(async (id) => {
+                        await sync(db);
                         req.session.userid = id;
                         res.status(200).json({
                             status: 200,
@@ -138,7 +147,7 @@ function init(db) {
                 res.status(400).send("Missing fields");
             } else {
                 users.create(login, password, lastname, firstname)
-                    .then((user_id) => res.status(201).send({ id: user_id }))
+                    .then(async (user_id) => {await sync(db); res.status(201).send({ id: user_id })})
                     .catch((err) => res.status(500).send(err));
             }
         });
@@ -165,7 +174,9 @@ function init(db) {
                     return;
                 })
                 req.session.destroy((err) => { });
-                await users.logout(user.login).then(()=>{
+                await users.logout(user.login)
+                .then(async ()=>{
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "Session fermee"
@@ -199,7 +210,10 @@ function init(db) {
                     });
                     return;
                 })
-                await users.delete(req.params.user_login).then(()=>{res.status(200).json({
+                await users.delete(req.params.user_login)
+                .then(async ()=>{
+                    await sync(db); 
+                    res.status(200).json({
                     status: 200,
                     message: "Suppresion effectuee"
                 });

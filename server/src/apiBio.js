@@ -3,6 +3,7 @@ const express = require("express");
 const { route } = require("express/lib/application");
 const Users = require("./entities/users.js")
 const BIO = require("./entities/bio.js")
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
@@ -10,10 +11,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync(db);
     });
     const users = new Users.default(db)
     const bio = new BIO.default(db)
@@ -46,7 +48,8 @@ function init(db) {
 
 
         await bio.create(usr,req.body.bio)
-        .then((rs) => {
+        .then(async (rs) => {
+            await sync(db); 
             res.status(200).json({
                 status: 200,
                 message: rs

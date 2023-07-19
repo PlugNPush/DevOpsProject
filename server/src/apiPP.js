@@ -2,6 +2,7 @@ const express = require("express");
 const Users = require("./entities/users.js")
 const PP = require("./entities/pp.js")
 const { default: message } = require("./entities/message.js");
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
@@ -9,10 +10,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync(db);
     });
     const users = new Users.default(db)
     const pp = new PP.default(db)
@@ -42,7 +44,8 @@ function init(db) {
                 return;
             }   
             await pp.create(usr,req.body.pp)
-            .then((rs) => {
+            .then(async (rs) => {
+                await sync(db); 
                 res.status(200).json({
                     status: 200,
                     message: rs

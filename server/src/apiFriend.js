@@ -3,6 +3,7 @@ const express = require("express");
 const { route } = require("express/lib/application");
 const Friend = require("./entities/friends.js");
 const Users = require("./entities/users.js")
+const { sync } = require('./index');
 
 function init(db) {
     const router = express.Router();
@@ -10,10 +11,11 @@ function init(db) {
     router.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
-    router.use((req, res, next) => {
+    router.use(async (req, res, next) => {
         console.log('API: method %s, path %s', req.method, req.path);
         console.log('Body', req.body);
         next();
+        await sync(db);
     });
     const friends = new Friend.default(db);
     const users = new Users.default(db)
@@ -66,7 +68,8 @@ function init(db) {
         }
 
         await friends.create(req.session.userid,req.params.user_login)
-            .then((user_id) => {
+            .then(async (user_id) => {
+                await sync(db); 
                 res.status(200).json({
                      id: user_id 
                 })
@@ -324,7 +327,8 @@ function init(db) {
 
 
                 await friends.delete(req.session.userid,req.params.user_login)
-                .then((val) => {
+                .then(async (val) => {
+                    await sync(db); 
                     res.status(200).json({
                         status: 200,
                         message: "unfollow " + req.params.user_login
