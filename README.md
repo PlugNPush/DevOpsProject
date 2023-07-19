@@ -15,6 +15,16 @@ Cyclic uses a serverless achitecture that is built on top of AWS Lambda and allo
 Cyclic also provides an access to an Amazon Dynamo DB instance for more efficient database processing, but the current implementation of the code does not support it as it is (as it is raw json-like file based).  
 More importantly, as students, we choose Cyclic because it is free (with limits), but we could integrate any other deployment environemnt service, if not AWS/Azure directly.  
 
+<img alt="Screenshot 2023-07-19 at 21 45 19" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/2b140aa8-9c59-40f2-8a93-2a2fa11bd7db"><br>  
+<img alt="Screenshot 2023-07-19 at 21 45 36" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/483c4cc7-c312-4d05-989b-98c855339a35"><br>  
+<img alt="Screenshot 2023-07-19 at 21 45 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/c656a109-c56c-4226-baeb-e4c38dc95d70"><br>  
+<img alt="Screenshot 2023-07-19 at 21 48 43" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/1bc37977-4b4f-4af3-b9a3-92e7d961d848"><br>  
+<img alt="Screenshot 2023-07-19 at 21 50 27" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/04be76a9-6d2b-4f58-bd5b-b14f8e5e43d1"><br>
+<img alt="Screenshot 2023-07-19 at 21 51 54" src="https://github.com/PlugNPush/DevOpsProject/assets/31410359/bf0b265f-9f80-4c96-8fb9-ab68f9297cc4"><br>
+
+
+
+
 
 ## Project Description
 
