@@ -7,7 +7,7 @@ The live deployment of the website through the GitHub Actions CI Pipeline is ava
 
 We decided to go a step further, and also take care of the backend deployment, using the Cyclic cloud provider and AWS for the database storage.  
 The backend API and database is deployed in parallel with the static deployment to GitHub Pages, and is available at [https://devopsproject.cyclic.app](https://devopsproject.cyclic.app).  
-You can try the API by accessing [this link](https://devopsproject.cyclic.app/api/user/isConnected), you should see a JSON output saying that the user was not found.  
+You can try the API by accessing [this link](https://devopsproject.cyclic.app/api/friend/followers/CrooZ), you should see a JSON output with an int status of 200 and the number of followers of the user CrooZ.  
 
 Cyclic uses a serverless achitecture that is built on top of AWS Lambda and allows us inside the private network to access a dedicated Amazon S3 bucket to store our database files. The access to AWS is granted by dynamically changing environment variables, automatically used by the AWS SDK in real-time.  
 Cyclic also provides an access to an Amazon Dynamo DB instance for more efficient database processing, but the current implementation of the code does not support it as it is (as it is raw json-like file based).  
